@@ -12,3 +12,6 @@ memory/
 # Sauvegardes
 *.bak
 *.bak-*
+
+# Notes de chantier de la refonte (non publiées)
+AUDIT-portail.md

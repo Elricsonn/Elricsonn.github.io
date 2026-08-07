@@ -4,160 +4,93 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Elricsonn — Portail</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cinzel+Decorative:wght@400&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  <meta name="description" content="Portail des projets d'Elricsonn : Rite Écossais Rectifié, héraldique, romans, vulgarisation.">
+  <meta name="theme-color" content="#0f0b08">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='25' x='4' font-size='24' fill='%23d4a84b'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E">
 
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:title" content="Elricsonn — Portail">
+  <meta property="og:description" content="Portail des projets d'Elricsonn : Rite Écossais Rectifié, héraldique, romans, vulgarisation.">
+  <meta property="og:url" content="https://elricsonn.github.io/">
+  <meta name="twitter:card" content="summary">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="ds/styles.css">
+
+  <style>
+    /* Propre au lanceur : une page unique, centrée, sans en-tête ni navigation. */
     body {
-      background-color: #000;
-      background-image: radial-gradient(ellipse at center, #1a1a1a 0%, #000 100%);
-      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 2.5rem 1rem;
-      font-family: 'Cinzel', serif;
-      color: #c9a84c;
+      gap: var(--sp-5);
+      padding: var(--sp-7) var(--sp-4);
+      background-image: radial-gradient(ellipse at center, #1a130c 0%, var(--fond) 100%);
+      background-attachment: fixed;
     }
 
-    .ornament {
-      font-size: 1.2rem;
-      letter-spacing: 0.8em;
-      color: #8a6a2a;
-      margin-bottom: 1.4rem;
-    }
-
-    h1 {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: 2rem;
+    .marque {
+      font-family: var(--font-orne);
+      font-weight: 700;
+      font-size: clamp(1.7rem, 7vw, 2.2rem);
       letter-spacing: 0.3em;
+      margin-inline-end: -0.3em;
       text-transform: uppercase;
-      color: #c9a84c;
-      text-shadow: 0 0 20px rgba(201,168,76,0.3);
-      margin-bottom: 0.6rem;
+      color: var(--or);
+      text-shadow: var(--lueur-titre);
       text-align: center;
     }
 
-    .subtitle {
-      font-size: 0.75rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: #8a6a2a;
-      margin-bottom: 2rem;
-      font-variant: small-caps;
-    }
+    /* Item flex centré : on retire l'avance du dernier glyphe. */
+    header .meta { margin-inline-end: -0.2em; }
 
-    .separator {
-      width: 200px;
-      height: 1px;
-      background: linear-gradient(to right, transparent, #8a6a2a, transparent);
-      margin: 0 auto 2.2rem;
-    }
+    .lanceur { width: 420px; max-width: 92vw; }
+    .famille { display: flex; flex-direction: column; gap: var(--sp-3); }
 
-    .portail {
-      background: rgba(30, 20, 8, 0.85);
-      border: 1px solid #5a3e1b;
-      padding: 2.2rem 2.6rem;
-      width: 400px;
-      max-width: 92vw;
-      display: flex;
-      flex-direction: column;
-      gap: 1.7rem;
-    }
-
-    /* — Familles thématiques — */
-    .groupe {
-      display: flex;
-      flex-direction: column;
-      gap: 0.7rem;
-    }
-
-    .groupe-titre {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      font-size: 0.6rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: #8a6a2a;
-      font-variant: small-caps;
-      text-align: center;
-      margin-bottom: 0.25rem;
-    }
-    .groupe-titre::before,
-    .groupe-titre::after {
-      content: "";
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(to right, transparent, #5a3e1b, transparent);
-    }
-
-    .btn {
-      display: block;
-      width: 100%;
-      padding: 0.72rem 1rem;
-      background: transparent;
-      border: 1px solid #5a3e1b;
-      color: #c9a84c;
-      font-family: 'Cinzel', serif;
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      text-align: center;
-      text-decoration: none;
-      cursor: pointer;
-      transition: background 0.3s, border-color 0.3s;
-    }
-    .btn:hover {
-      background: rgba(201,168,76,0.1);
-      border-color: #c9a84c;
-    }
-    .btn.disabled {
-      opacity: 0.35;
-      cursor: default;
-      pointer-events: none;
-    }
-
-    .footer-ornament {
-      margin-top: 2.4rem;
-      font-size: 1rem;
-      color: #5a3e1b;
-    }
+    /* Le lanceur n'a pas de pied de page bordé : juste l'ornement de clôture. */
+    .cloture { border: 0; padding-top: var(--sp-6); }
   </style>
 </head>
 <body>
 
-  <div class="ornament">✦ ✦ ✦</div>
+  <p class="ornement" aria-hidden="true">✦ ✦ ✦</p>
 
-  <h1>Elricsonn</h1>
-  <p class="subtitle">Portail Principal</p>
-  <div class="separator"></div>
+  <header style="display: flex; flex-direction: column; align-items: center; gap: var(--sp-2);">
+    <h1 class="marque">Elricsonn</h1>
+    <p class="meta">Portail Principal</p>
+  </header>
 
-  <nav class="portail">
+  <div class="filet" style="margin-bottom: 0;" aria-hidden="true"></div>
 
-    <div class="groupe">
-      <p class="groupe-titre">Voie &amp; Tradition</p>
-      <a href="https://elricsonn.github.io/loge-rer" class="btn">✦ Loge RER — Rite Écossais Rectifié</a>
-      <a href="https://elricsonn.github.io/atelier-du-blason" class="btn">✦ L'Atelier du Blason</a>
-    </div>
+  <nav class="panneau lanceur" aria-label="Projets">
 
-    <div class="groupe">
-      <p class="groupe-titre">Écrits &amp; Récits</p>
-      <a href="https://elricsonn.github.io/le-7e-initie" class="btn">✦ Le 7e initié — Roman</a>
-      <a href="https://elricsonn.github.io/chestel-combat" class="btn">✦ Chestel Combat — Silent Hill</a>
-    </div>
+    <section class="famille" aria-labelledby="f-voie">
+      <h2 class="titre-flanque" id="f-voie">Voie &amp; Tradition</h2>
+      <a href="/loge-rer/" class="btn"><span><span aria-hidden="true">✦&nbsp;</span>Loge RER — Rite Écossais Rectifié</span></a>
+      <a href="/atelier-du-blason/" class="btn"><span><span aria-hidden="true">✦&nbsp;</span>L'Atelier du Blason</span></a>
+    </section>
 
-    <div class="groupe">
-      <p class="groupe-titre">Regard &amp; Monde</p>
-      <a href="https://elricsonn.github.io/la-fin-du-monde-16h53" class="btn">✦ La fin du monde, c'est pour demain ; à 16h53</a>
-      <a href="https://elricsonn.github.io/tableemeraude" class="btn">✦ La Table d'Émeraude</a>
-      <a href="https://elricsonn.github.io/lamargottiere" class="btn">✦ La Margottière</a>
-    </div>
+    <section class="famille" aria-labelledby="f-ecrits">
+      <h2 class="titre-flanque" id="f-ecrits">Écrits &amp; Récits</h2>
+      <a href="/le-7e-initie/" class="btn"><span><span aria-hidden="true">✦&nbsp;</span>Le 7e initié — Roman</span></a>
+      <a href="/chestel-combat/" class="btn"><span><span aria-hidden="true">✦&nbsp;</span>Chestel Combat — Silent Hill</span></a>
+    </section>
+
+    <section class="famille" aria-labelledby="f-regard">
+      <h2 class="titre-flanque" id="f-regard">Regard &amp; Monde</h2>
+      <a href="/la-fin-du-monde-16h53/" class="btn"><span><span aria-hidden="true">✦&nbsp;</span>La fin du monde, c'est pour demain ; à 16h53</span></a>
+      <a href="/tableemeraude/" class="btn"><span><span aria-hidden="true">✦&nbsp;</span>La Table d'Émeraude</span></a>
+      <a href="/lamargottiere/" class="btn"><span><span aria-hidden="true">✦&nbsp;</span>La Margottière</span></a>
+    </section>
 
   </nav>
 
-  <div class="footer-ornament">✦</div>
+  <footer class="pied cloture">
+    <p class="ornement" aria-hidden="true">✦</p>
+  </footer>
 
 </body>
 </html>
